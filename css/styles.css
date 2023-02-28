@@ -1,0 +1,65 @@
+.column-full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-column {
+  color: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px black;
+  height: 12rem;
+}
+
+.cloud-one {
+  position: absolute;
+  left: 0;
+  width: 15rem;
+}
+
+.cloud-two {
+  position: absolute;
+  right: 0;
+  width: 20rem;
+}
+
+.sun {
+  position: absolute;
+  width: 10rem;
+  top: -2rem;
+  right: 1rem;
+}
+
+.header-text {
+  position: absolute;
+  top: 6rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  width: 20rem;
+  height: 2rem;
+  background-color: rgb(48, 116, 186);
+  border: none;
+  filter: drop-shadow(0 4px 4px rgb(0, 0, 0, 0.25));
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+input::placeholder {
+  color: rgb(182, 182, 182);
+}
+
+.enter-button {
+  font-size: 1.25rem;
+  background-color: transparent;
+  border: none;
+  color: rgb(182, 182, 182);
+}
