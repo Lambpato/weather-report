@@ -10,19 +10,20 @@
   font-weight: 500;
   font-size: 2.5rem;
   text-shadow: 1px 1px 2px black;
-  height: 12rem;
 }
 
 .cloud-one {
   position: absolute;
   left: 0;
   width: 15rem;
+  top: 0;
 }
 
 .cloud-two {
   position: absolute;
   right: 0;
   width: 20rem;
+  top: 0;
 }
 
 .sun {
@@ -33,8 +34,7 @@
 }
 
 .header-text {
-  position: absolute;
-  top: 6rem;
+  margin-top: 5rem;
 }
 
 form {
@@ -49,8 +49,9 @@ input {
   background-color: rgb(48, 116, 186);
   border: none;
   filter: drop-shadow(0 4px 4px rgb(0, 0, 0, 0.25));
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   margin-bottom: 2rem;
+  padding-left: 1rem;
 }
 
 input::placeholder {
@@ -62,4 +63,101 @@ input::placeholder {
   background-color: transparent;
   border: none;
   color: rgb(182, 182, 182);
+}
+
+input:hover,
+.enter-button:hover {
+  cursor: pointer;
+}
+
+#user-entry-list {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.user-entry {
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+  border-radius: 0.5rem;
+  background-color: rgb(48, 116, 186);
+  flex-wrap: nowrap;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.hourly-forecast {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.hourly-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem;
+  line-height: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  padding-left: 0;
+}
+
+.time {
+  font-size: 0.75rem;
+}
+
+.weather-icon {
+  max-width: 2.75rem;
+}
+
+.column-one-third {
+  padding: 1rem 0;
+  padding-left: 0.75rem;
+  line-height: 1rem;
+  color: white;
+}
+
+.condition {
+  padding: 0;
+  align-items: center;
+  display: flex;
+}
+
+.current-condition {
+  font-size: 0.75rem;
+}
+
+.current-icon {
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
+.column-two-thirds {
+  overflow: scroll;
+}
+
+.current-location {
+  font-size: 0.75rem;
+}
+
+.current-time {
+  font-size: 0.7rem;
+}
+
+.current-weather {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.current-location,
+.current-time,
+.current-weather,
+.current-condition {
+  margin: 0;
+  text-shadow: 1px 1px 2px black;
 }

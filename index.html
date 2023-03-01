@@ -16,9 +16,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header class="">
     <div class="container">
-      <div class="header-column" data-view="">
+      <div class="header-column" data-view="entry-form">
         <div class="column-full">
           <div>
             <img class="sun" src="images/sun.jpeg">
@@ -36,12 +36,16 @@
       </div>
     </div>
   </header>
-  <form data-view="new-location">
+  <form class="" data-view="entry-form">
     <input type="text" id="location" placeholder="City or Zip Code" required>
-    <button class="enter-button">Enter</button>
+    <label for="enter"></label>
+    <button class="enter-button" type="submit" id="enter">Enter</button>
   </form>
-  <main>
-
+  <main class="container">
+    <div class="row" id="weather-preview" data-view="entry-form">
+      <ul id="user-entry-list">
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

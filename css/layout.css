@@ -4,12 +4,15 @@
 
 body {
   background-color: rgb(74, 135, 196);
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .container {
   max-width: 575px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .row {
@@ -36,4 +39,11 @@ body {
   .column-half {
     width: 50%;
   }
+}
+
+.hourly-temp,
+.time {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 2px black;
 }
