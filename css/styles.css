@@ -13,6 +13,13 @@
   text-shadow: 1px 1px 2px black;
 }
 
+.hourly-temp,
+.time {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
 .cloud-one {
   position: absolute;
   left: 0;
@@ -66,8 +73,14 @@ input::placeholder {
   color: rgb(182, 182, 182);
 }
 
+.mobile-back {
+  text-align: start;
+  justify-content: start;
+}
+
 input:hover,
-.enter-button:hover {
+.enter-button:hover,
+.mobile-back:hover {
   cursor: pointer;
 }
 
