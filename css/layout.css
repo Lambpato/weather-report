@@ -40,7 +40,7 @@ body {
     width: 50%;
   }
 
-  #weather-preview {
+  .user-entry {
     display: flex;
     gap: 30rem;
   }

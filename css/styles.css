@@ -80,14 +80,19 @@ li {
   list-style-type: none;
 }
 
-.user-entry {
+.current-weather {
   display: flex;
   align-items: center;
   max-width: 320px;
+  max-height: 145px;
   border-radius: 0.5rem;
   background-color: rgb(48, 116, 186);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
-  margin-bottom: 1rem;
+}
+
+.current-temp {
+  font-size: 2.5rem;
+  margin: 1rem 0;
 }
 
 .hourly-forecast {
@@ -150,12 +155,6 @@ li {
   font-size: 0.7rem;
 }
 
-.current-weather {
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 2.5rem;
-}
-
 .current-location,
 .current-time,
 .current-weather,
@@ -208,6 +207,7 @@ li {
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
   border-radius: 0.5rem;
   color: white;
+  padding: 0.25rem;
 }
 
 .forecast-day,
@@ -283,4 +283,8 @@ li {
 .astro-right {
   display: flex;
   justify-content: space-between;
+}
+
+.user-entry {
+  margin-bottom: 2rem;
 }

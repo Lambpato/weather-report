@@ -1,9 +1,7 @@
 var $locationinput = document.querySelector('#location');
 var $form = document.querySelector('form');
-var $enter = document.querySelector('.enter-button');
-var $userEntryList = document.querySelector('#user-entry-list');
-var $forecast = document.querySelector('#forecast-preview');
-// var $forecastdata = getForecast($locationinput.value);
+var $weather = document.querySelector('#user-entry-list');
+var $header = document.querySelector('.header-column');
 
 function submitForm(e) {
   e.preventDefault();
@@ -11,10 +9,11 @@ function submitForm(e) {
     location: $locationinput.value,
     entryId: data.nextEntryId
   };
-  data.entries.unshift(inputs);
-  inputs.entryId = data.editing.entryId;
   data.nextEntryId++;
+  data.entries.unshift(inputs);
   viewSwap('entries');
+  // console.log('fart');
+  $form.reset();
 }
 
 function renderWeather(location) {
@@ -24,11 +23,14 @@ function renderWeather(location) {
   xhr.addEventListener('load', function () {
     var times = xhr.response.forecast.forecastday[0].hour;
     var $userEntries = document.createElement('li');
-    $userEntries.setAttribute('data-entry-id', 'entry.entryId');
+    $userEntries.setAttribute('data-entry-id', location.entryId);
     $userEntries.className = 'user-entry';
+    var $currentWeather = document.createElement('div');
+    $currentWeather.className = 'current-weather';
+    $userEntries.appendChild($currentWeather);
     var $columnOneThird = document.createElement('div');
     $columnOneThird.className = 'column-one-third';
-    $userEntries.appendChild($columnOneThird);
+    $currentWeather.appendChild($columnOneThird);
     var $weatherLocation = document.createElement('p');
     $weatherLocation.textContent = xhr.response.location.name;
     $weatherLocation.className = 'current-location';
@@ -38,7 +40,7 @@ function renderWeather(location) {
     $currentTime.textContent = xhr.response.current.last_updated.slice(-5);
     $columnOneThird.appendChild($currentTime);
     var $currentTemp = document.createElement('p');
-    $currentTemp.className = 'current-weather';
+    $currentTemp.className = 'current-temp';
     $currentTemp.textContent = Math.round(xhr.response.current.temp_f) + '°';
     $columnOneThird.appendChild($currentTemp);
     var $conditions = document.createElement('div');
@@ -57,11 +59,11 @@ function renderWeather(location) {
     var $ul = document.createElement('ul');
     $ul.className = 'hourly-forecast';
     $columnTwoThirds.appendChild($ul);
-    $userEntries.appendChild($columnTwoThirds);
-    $userEntryList.appendChild($userEntries);
+    $currentWeather.appendChild($columnTwoThirds);
     var $currentForecast = document.createElement('div');
-    $currentForecast.setAttribute('data-entry-id', 'entry.entryId');
-    $currentForecast.className = 'forecast-entry';
+    $currentForecast.setAttribute('data-entry-id', location.entryId);
+    $currentForecast.setAttribute('id', 'forecast-preview');
+    $userEntries.appendChild($currentForecast);
     var $forecastHeader = document.createElement('div');
     $forecastHeader.className = 'forecast-head';
     $currentForecast.appendChild($forecastHeader);
@@ -212,15 +214,14 @@ function renderWeather(location) {
     $moonrise.textContent = 'Moonset: ' + xhr.response.forecast.forecastday[0].astro.moonrise;
     $astroRight.appendChild($moonrise);
     $astroRow.appendChild($astroRight);
-    $forecast.appendChild($currentForecast);
   });
   xhr.send();
 
 }
 
-function appendHourlyData() {
+function appendForecast() {
   for (var i = 0; i < data.entries.length; i++) {
-    $forecast.appendChild(renderWeather(data.entries[i]));
+    $weather.appendChild(renderWeather(data.entries[i].location));
   }
   viewSwap(data.view);
 }
@@ -229,13 +230,13 @@ function viewSwap(view) {
   if (view === 'entries') {
     data.view = 'entries';
     $form.className = 'hidden';
-    $forecast.className = 'view';
+    $header.className = 'hidden';
   } else if (view === 'entry-form') {
     data.view = 'entry-form';
     $form.className = 'view';
-    $forecast.className = 'hidden';
+    $header.className = 'header-column';
   }
 }
 
-$enter.addEventListener('submit', submitForm);
-document.addEventListener('DOMContentLoaded', appendHourlyData);
+$form.addEventListener('submit', submitForm);
+document.addEventListener('DOMContentLoaded', appendForecast);

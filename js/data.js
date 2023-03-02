@@ -7,7 +7,7 @@ var data = {
   nextEntryId: 1
 };
 
-var previousDataJSON = localStorage.getItem('local-storage');
+var previousDataJSON = localStorage.getItem('weather-local-storage');
 
 if (previousDataJSON != null) {
   data = JSON.parse(previousDataJSON);
@@ -15,7 +15,7 @@ if (previousDataJSON != null) {
 
 function storeData(e) {
   var dataJSON = JSON.stringify(data);
-  localStorage.setItem('local-storage', dataJSON);
+  localStorage.setItem('weather-local-storage', dataJSON);
 }
 
 window.addEventListener('beforeunload', storeData);
