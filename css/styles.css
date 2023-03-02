@@ -71,6 +71,7 @@ input:hover,
 }
 
 #user-entry-list {
+  justify-content: center;
   padding: 0;
 }
 
@@ -84,8 +85,6 @@ li {
   max-width: 320px;
   border-radius: 0.5rem;
   background-color: rgb(48, 116, 186);
-  flex-wrap: nowrap;
-  padding: 0;
   margin-bottom: 1rem;
 }
 
@@ -141,7 +140,7 @@ li {
 }
 
 .current-location {
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 
 .current-time {
@@ -160,4 +159,10 @@ li {
 .current-condition {
   margin: 0;
   text-shadow: 1px 1px 2px black;
+}
+
+.forecast-entry {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
