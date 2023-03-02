@@ -1,4 +1,5 @@
-.column-full {
+.column-full,
+.forecast-row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,6 +71,10 @@ input:hover,
   cursor: pointer;
 }
 
+#weather-preview {
+  display: flex;
+}
+
 #user-entry-list {
   justify-content: center;
   padding: 0;
@@ -85,6 +90,7 @@ li {
   max-width: 320px;
   border-radius: 0.5rem;
   background-color: rgb(48, 116, 186);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
   margin-bottom: 1rem;
 }
 
@@ -135,7 +141,8 @@ li {
   max-height: 2rem;
 }
 
-.column-two-thirds {
+.column-two-thirds,
+.hourly-list {
   overflow: scroll;
 }
 
@@ -156,7 +163,8 @@ li {
 .current-location,
 .current-time,
 .current-weather,
-.current-condition {
+.current-condition,
+.forecast-tempt {
   margin: 0;
   text-shadow: 1px 1px 2px black;
 }
@@ -165,4 +173,118 @@ li {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.additional-forecast,
+.forecast-header {
+  max-width: 320px;
+}
+
+.forecast-head {
+  color: white;
+  line-height: 0.5rem;
+  text-align: center;
+}
+
+.forecast-conditions,
+.forecast-high-low {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-conditions {
+  gap: 1rem;
+}
+
+.forecast-high-low {
+  gap: 4rem;
+  margin-bottom: 2rem;
+}
+
+.forecast-high,
+.forecast-low {
+  margin-top: 0;
+}
+
+.additional-forecast {
+  background-color: rgb(48, 116, 186);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.forecast-day,
+.forecast-tempt {
+  font-size: 2rem;
+}
+
+.forecast-tempt {
+  padding-bottom: 0.5rem;
+}
+
+.forecast-condition-text {
+  font-size: 1rem;
+}
+
+.forecast-condition-icon {
+  max-width: 2rem;
+}
+
+.column-left,
+.column-right {
+  max-width: 120px;
+}
+
+.column-left,
+.column-right,
+.column-left-condition,
+.astro-row {
+  background-color: rgb(74, 135, 196);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  padding: 0.75rem;
+}
+
+.column-left-condition {
+  line-height: 0.5;
+}
+
+.forecast-row {
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.forecast-header,
+.forecast-text {
+  margin: 0;
+}
+
+.forecast-header {
+  font-weight: 700;
+}
+
+.astro-row {
+  max-width: 265px;
+  margin: 2rem auto;
+}
+
+.forecast-text {
+  font-size: 0.75rem;
+}
+
+.condition-icon {
+  max-width: 4rem;
+}
+
+.forecast-percentage {
+  font-size: xx-large;
+  margin: 1rem 0;
+}
+
+.astro-left,
+.astro-right {
+  display: flex;
+  justify-content: space-between;
 }
