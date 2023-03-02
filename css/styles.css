@@ -71,10 +71,6 @@ input:hover,
   cursor: pointer;
 }
 
-#weather-preview {
-  display: flex;
-}
-
 #user-entry-list {
   justify-content: center;
   padding: 0;

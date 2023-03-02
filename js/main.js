@@ -3,7 +3,6 @@ var $form = document.querySelector('form');
 var $enter = document.querySelector('.enter-button');
 var $userEntryList = document.querySelector('#user-entry-list');
 var $forecast = document.querySelector('#forecast-preview');
-
 // var $forecastdata = getForecast($locationinput.value);
 
 function submitForm(e) {
@@ -214,7 +213,6 @@ function renderWeather(location) {
     $astroRight.appendChild($moonrise);
     $astroRow.appendChild($astroRight);
     $forecast.appendChild($currentForecast);
-    // console.log(xhr.response);
   });
   xhr.send();
 

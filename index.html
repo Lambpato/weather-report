@@ -16,22 +16,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="">
-    <div class="container">
-      <div class="header-column" data-view="entry-form">
-        <div class="column-full">
-          <div>
-            <img class="sun" src="images/sun.jpeg">
-          </div>
-          <div>
-            <img class="cloud-one" src="images/Cloudz.png">
-          </div>
-          <div>
-            <img class="cloud-two" src="images/Cloudz.png">
-          </div>
-          <div class="header-text">
-            <h1 class="header-column">Weather Report</h1>
-          </div>
+  <header data-view="entry-head">
+    <div class="header-column" data-view="entry-form">
+      <div class="column-full">
+        <div>
+          <img class="sun" src="images/sun.jpeg">
+        </div>
+        <div>
+          <img class="cloud-one" src="images/Cloudz.png">
+        </div>
+        <div>
+          <img class="cloud-two" src="images/Cloudz.png">
+        </div>
+        <div class="header-text">
+          <h1 class="header-column">Weather Report</h1>
         </div>
       </div>
     </div>
@@ -42,7 +40,7 @@
     <button class="enter-button" type="submit" id="enter">Enter</button>
   </form>
   <main class="container">
-    <div id="weather-preview" data-view="entry-form">
+    <div id="weather-preview" data-view="entries">
       <ul id="user-entry-list">
       </ul>
       <div id="forecast-preview">
