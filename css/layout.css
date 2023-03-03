@@ -45,13 +45,13 @@ body {
     gap: 30rem;
   }
 
-  /* .mobile-back {
+  .mobile-back {
     display: none;
-  } */
+  }
 }
 
 @media screen and (max-width: 768px) {
-  #forecast-preview {
+  .forecast-view {
     display: none;
   }
 }

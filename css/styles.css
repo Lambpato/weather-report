@@ -93,7 +93,7 @@ li {
   list-style-type: none;
 }
 
-.current-weather {
+#current-weather {
   display: flex;
   align-items: center;
   max-width: 320px;
@@ -192,6 +192,7 @@ li {
   color: white;
   line-height: 0.5rem;
   text-align: center;
+  margin-top: 2rem;
 }
 
 .forecast-conditions,

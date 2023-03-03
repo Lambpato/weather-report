@@ -39,7 +39,7 @@ function renderWeather(location) {
   $userEntries.setAttribute('data-entry-id', location.entryId);
   $userEntries.className = 'user-entry';
   var $currentWeather = document.createElement('div');
-  $currentWeather.className = 'current-weather';
+  $currentWeather.setAttribute('id', 'current-weather');
   $userEntries.appendChild($currentWeather);
   var $columnOneThird = document.createElement('div');
   $columnOneThird.className = 'column-one-third';
@@ -76,6 +76,7 @@ function renderWeather(location) {
   var $currentForecast = document.createElement('div');
   $currentForecast.setAttribute('data-entry-id', location.entryId);
   $currentForecast.setAttribute('id', 'forecast-preview');
+  $currentForecast.className = 'forecast-view';
   $userEntries.appendChild($currentForecast);
   var $forecastHeader = document.createElement('div');
   $forecastHeader.className = 'forecast-head';
@@ -258,3 +259,12 @@ function viewSwap(view) {
 
 $form.addEventListener('submit', submitForm);
 document.addEventListener('DOMContentLoaded', appendForecast);
+document.addEventListener('click', function (e) {
+  const target = e.target.closest('#current-weather');
+  var $currentWeather = document.querySelector('#current-weather');
+  var $currentForecast = document.querySelector('#forecast-preview');
+  if (target) {
+    $currentForecast.className = 'view';
+    $currentWeather.className = 'hidden';
+  }
+});
