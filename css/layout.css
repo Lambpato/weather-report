@@ -48,4 +48,10 @@ body {
   .mobile-back {
     display: none;
   }
+
+  #additional-forecast {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+  }
 }

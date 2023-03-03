@@ -148,7 +148,8 @@ li {
   font-size: 0.75rem;
 }
 
-.current-icon {
+.current-icon,
+.day-icon {
   max-width: 2.5rem;
   max-height: 2.5rem;
 }
@@ -177,7 +178,7 @@ li {
   flex-direction: column;
 }
 
-.additional-forecast,
+.forecast-preview,
 .forecast-header {
   max-width: 320px;
 }
@@ -209,12 +210,41 @@ li {
   margin-top: 0;
 }
 
-.additional-forecast {
+.forecast-preview,
+.weekly-weather-container {
   background-color: rgb(48, 116, 186);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
   border-radius: 0.5rem;
   color: white;
   padding: 0.25rem;
+}
+
+.day-of-week {
+  padding: 0.5rem;
+}
+
+.day-weather {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(74, 135, 196);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  margin: 1rem;
+}
+
+.date {
+  font-weight: 500;
+}
+
+.day-temp-min {
+  font-size: 0.95rem;
+  color: lightgrey;
+}
+
+.day-temp-max {
+  font-size: 1.1rem;
 }
 
 .forecast-day,
@@ -260,7 +290,10 @@ li {
 }
 
 .forecast-header,
-.forecast-text {
+.forecast-text,
+.date,
+.day-temp-max,
+.day-temp-min {
   margin: 0;
 }
 
@@ -294,4 +327,9 @@ li {
 
 .user-entry {
   margin-top: 2rem;
+}
+
+.current-forecast,
+.weekly-weather-container {
+  margin-bottom: 2rem;
 }
