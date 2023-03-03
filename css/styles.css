@@ -1,0 +1,297 @@
+.column-full,
+.forecast-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-column {
+  color: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px black;
+}
+
+.hourly-temp,
+.time {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 0.75rem;
+}
+
+.cloud-one {
+  position: absolute;
+  left: 0;
+  width: 15rem;
+  top: 0;
+}
+
+.cloud-two {
+  position: absolute;
+  right: 0;
+  width: 20rem;
+  top: 0;
+}
+
+.sun {
+  position: absolute;
+  width: 10rem;
+  top: -2rem;
+  right: 1rem;
+}
+
+.header-text {
+  margin-top: 5rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  width: 20rem;
+  height: 2rem;
+  background-color: rgb(48, 116, 186);
+  border: none;
+  filter: drop-shadow(0 4px 4px rgb(0, 0, 0, 0.25));
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+input::placeholder {
+  color: rgb(182, 182, 182);
+}
+
+.enter-button {
+  font-size: 1.25rem;
+  background-color: transparent;
+  border: none;
+  color: rgb(182, 182, 182);
+}
+
+.mobile-back {
+  text-align: start;
+  justify-content: start;
+  font-size: 1.5rem;
+}
+
+input:hover,
+.enter-button:hover,
+.mobile-back:hover {
+  cursor: pointer;
+}
+
+#user-entry-list {
+  justify-content: center;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+#current-weather {
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+  max-height: 145px;
+  border-radius: 0.5rem;
+  background-color: rgb(48, 116, 186);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+}
+
+.current-temp {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.hourly-forecast {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.hourly-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem;
+  line-height: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  padding-left: 0;
+}
+
+.weather-icon {
+  max-width: 2.75rem;
+}
+
+.column-one-third {
+  padding: 1rem 0;
+  padding-left: 0.75rem;
+  line-height: 1rem;
+  color: white;
+}
+
+.condition {
+  padding: 0;
+  align-items: center;
+  display: flex;
+}
+
+.current-condition {
+  font-size: 0.75rem;
+}
+
+.current-icon {
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
+
+.column-two-thirds,
+.hourly-list {
+  overflow: scroll;
+}
+
+.current-location {
+  font-size: 1rem;
+}
+
+.current-location,
+.current-time,
+.current-weather,
+.current-condition,
+.forecast-tempt {
+  margin: 0;
+  text-shadow: 1px 1px 2px black;
+}
+
+.forecast-entry {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.additional-forecast,
+.forecast-header {
+  max-width: 320px;
+}
+
+.forecast-head {
+  color: white;
+  line-height: 0.5rem;
+  text-align: center;
+}
+
+.forecast-conditions,
+.forecast-high-low {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-conditions {
+  gap: 1rem;
+}
+
+.forecast-high-low {
+  gap: 4rem;
+  margin-bottom: 2rem;
+}
+
+.forecast-high,
+.forecast-low {
+  margin-top: 0;
+}
+
+.additional-forecast {
+  background-color: rgb(48, 116, 186);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.25rem;
+}
+
+.forecast-day,
+.forecast-tempt {
+  font-size: 2rem;
+}
+
+.forecast-tempt {
+  padding-bottom: 0.5rem;
+}
+
+.forecast-condition-text {
+  font-size: 1rem;
+}
+
+.forecast-condition-icon {
+  max-width: 2rem;
+}
+
+.column-left,
+.column-right {
+  max-width: 120px;
+}
+
+.column-left,
+.column-right,
+.column-left-condition,
+.astro-row {
+  background-color: rgb(74, 135, 196);
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  padding: 0.75rem;
+}
+
+.column-left-condition {
+  line-height: 0.5;
+}
+
+.forecast-row {
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.forecast-header,
+.forecast-text {
+  margin: 0;
+}
+
+.forecast-header {
+  font-weight: 700;
+}
+
+.astro-row {
+  max-width: 265px;
+  margin: 2rem auto;
+}
+
+.forecast-text {
+  font-size: 0.75rem;
+}
+
+.condition-icon {
+  max-width: 4rem;
+}
+
+.forecast-percentage {
+  font-size: xx-large;
+  margin: 1rem 0;
+}
+
+.astro-left,
+.astro-right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-entry {
+  margin-top: 2rem;
+}
