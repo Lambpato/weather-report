@@ -34,8 +34,6 @@ async function grabForecast(location) {
 }
 
 function renderWeather(location) {
-  // var entryId = 0;
-
   var times = location.forecast.forecastday[0].hour;
   var $userEntries = document.createElement('li');
   $userEntries.setAttribute('data-entry-id', location.entryId);
@@ -121,11 +119,11 @@ function renderWeather(location) {
   $forecastHeader.appendChild($forecastHighLow);
   var $forecastHigh = document.createElement('p');
   $forecastHigh.className = 'forecast-high';
-  $forecastHigh.textContent = 'H: ' + location.forecast.forecastday[0].day.maxtemp_f + '°';
+  $forecastHigh.textContent = 'H: ' + Math.round(location.forecast.forecastday[0].day.maxtemp_f) + '°';
   $forecastHighLow.appendChild($forecastHigh);
   var $forecastLow = document.createElement('p');
   $forecastLow.className = 'forecast-low';
-  $forecastLow.textContent = 'L: ' + location.forecast.forecastday[0].day.mintemp_f + '°';
+  $forecastLow.textContent = 'L: ' + Math.round(location.forecast.forecastday[0].day.mintemp_f) + '°';
   $forecastHighLow.appendChild($forecastLow);
   var $forecastPreview = document.createElement('div');
   $forecastPreview.className = 'forecast-preview';
