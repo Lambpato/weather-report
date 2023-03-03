@@ -34,6 +34,8 @@ async function grabForecast(location) {
 }
 
 function renderWeather(location) {
+  // var entryId = 0;
+
   var times = location.forecast.forecastday[0].hour;
   var $userEntries = document.createElement('li');
   $userEntries.setAttribute('data-entry-id', location.entryId);
@@ -74,7 +76,7 @@ function renderWeather(location) {
   $columnTwoThirds.appendChild($ul);
   $currentWeather.appendChild($columnTwoThirds);
   var $currentForecast = document.createElement('div');
-  $currentForecast.setAttribute('data-entry-id', location.entryId);
+  $currentForecast.setAttribute('data-entry-id', data.entryId);
   $currentForecast.setAttribute('id', 'forecast-preview');
   if (window.matchMedia('only screen and (max-width: 768px)').matches) {
     $currentForecast.className = 'hidden';
