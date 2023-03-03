@@ -245,39 +245,39 @@ function renderWeather(location) {
   var $weeklyWeatherDiv = document.createElement('div');
   $weeklyWeatherDiv.className = 'weekly-weather-container';
   $additionalForecast.appendChild($weeklyWeatherDiv);
-  var $dayOfWeek = document.createElement('ul');
-  $dayOfWeek.className = 'day-of-week';
-  $weeklyWeatherDiv.appendChild($dayOfWeek);
-  var day = location.forecast.forecastday;
-  var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  for (var y = 1; y < day.length; y++) {
-    var time = day[y].date;
-    var weekday = new Date(time);
-    var date = weekday.getDay();
-    var currentday = weekdays[date];
-    var dayIcon = day[y].day.condition.icon;
-    var dayTempMax = Math.round(day[y].day.maxtemp_f);
-    var dayTempMin = Math.round(day[y].day.mintemp_f);
-    var $dayli = document.createElement('li');
-    $dayli.className = 'day-weather';
-    var $day = document.createElement('p');
-    var $dayIcon = document.createElement('img');
-    var $dayTempMin = document.createElement('p');
-    var $dayTempMax = document.createElement('p');
-    $day.className = 'date';
-    $day.textContent = currentday;
-    $dayli.appendChild($day);
-    $dayIcon.setAttribute('src', dayIcon);
-    $dayIcon.className = 'day-icon';
-    $dayli.appendChild($dayIcon);
-    $dayli.appendChild($dayTempMin);
-    $dayTempMin.className = 'day-temp-min';
-    $dayTempMin.textContent = dayTempMin + '°';
-    $dayli.appendChild($dayTempMax);
-    $dayTempMax.textContent = dayTempMax + '°';
-    $dayTempMax.className = 'day-temp-max';
-    $dayOfWeek.appendChild($dayli);
-  }
+  // var $dayOfWeek = document.createElement('ul');
+  // $dayOfWeek.className = 'day-of-week';
+  // $weeklyWeatherDiv.appendChild($dayOfWeek);
+  // var day = location.forecast.forecastday;
+  // var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  // for (var y = 1; y < day.length; y++) {
+  //   var time = day[y].date;
+  //   var weekday = new Date(time);
+  //   var date = weekday.getDay();
+  //   var currentday = weekdays[date];
+  //   var dayIcon = day[y].day.condition.icon;
+  //   var dayTempMax = Math.round(day[y].day.maxtemp_f);
+  //   var dayTempMin = Math.round(day[y].day.mintemp_f);
+  //   var $dayli = document.createElement('li');
+  //   $dayli.className = 'day-weather';
+  //   var $day = document.createElement('p');
+  //   var $dayIcon = document.createElement('img');
+  //   var $dayTempMin = document.createElement('p');
+  //   var $dayTempMax = document.createElement('p');
+  //   $day.className = 'date';
+  //   $day.textContent = currentday;
+  //   $dayli.appendChild($day);
+  //   $dayIcon.setAttribute('src', dayIcon);
+  //   $dayIcon.className = 'day-icon';
+  //   $dayli.appendChild($dayIcon);
+  //   $dayli.appendChild($dayTempMin);
+  //   $dayTempMin.className = 'day-temp-min';
+  //   $dayTempMin.textContent = dayTempMin + '°';
+  //   $dayli.appendChild($dayTempMax);
+  //   $dayTempMax.textContent = dayTempMax + '°';
+  //   $dayTempMax.className = 'day-temp-max';
+  //   $dayOfWeek.appendChild($dayli);
+  // }
 
   return $userEntries;
 }
