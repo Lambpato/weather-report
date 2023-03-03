@@ -76,6 +76,7 @@ input::placeholder {
 .mobile-back {
   text-align: start;
   justify-content: start;
+  font-size: 1.5rem;
 }
 
 input:hover,
@@ -192,7 +193,6 @@ li {
   color: white;
   line-height: 0.5rem;
   text-align: center;
-  margin-top: 2rem;
 }
 
 .forecast-conditions,
@@ -300,5 +300,5 @@ li {
 }
 
 .user-entry {
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }

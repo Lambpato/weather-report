@@ -76,7 +76,11 @@ function renderWeather(location) {
   var $currentForecast = document.createElement('div');
   $currentForecast.setAttribute('data-entry-id', location.entryId);
   $currentForecast.setAttribute('id', 'forecast-preview');
-  $currentForecast.className = 'forecast-view';
+  if (window.matchMedia('only screen and (max-width: 768px)').matches) {
+    $currentForecast.className = 'hidden';
+  } else {
+    $currentForecast.className = 'forecast-view';
+  }
   $userEntries.appendChild($currentForecast);
   var $forecastHeader = document.createElement('div');
   $forecastHeader.className = 'forecast-head';
@@ -259,12 +263,35 @@ function viewSwap(view) {
 
 $form.addEventListener('submit', submitForm);
 document.addEventListener('DOMContentLoaded', appendForecast);
+
+window.addEventListener('resize', function (e) {
+  var $currentWeather = document.querySelector('#current-weather');
+  var $currentForecast = document.querySelector('#forecast-preview');
+  if (window.matchMedia('only screen and (min-width: 768px)').matches) {
+    $currentForecast.className = 'forecast-view';
+    $currentWeather.className = 'view';
+  } else {
+    $currentForecast.className = 'hidden';
+    $currentWeather.className = 'view';
+  }
+});
+
 document.addEventListener('click', function (e) {
-  const target = e.target.closest('#current-weather');
+  var $currentWeather = document.querySelector('#current-weather');
+  var $currentForecast = document.querySelector('#forecast-preview');
+  if (window.matchMedia('only screen and (min-width: 768px)').matches) {
+    return;
+  }
+  $currentForecast.className = 'forecast-view';
+  $currentWeather.className = 'hidden';
+});
+
+document.addEventListener('click', function (e) {
+  var target = e.target.closest('.mobile-back');
   var $currentWeather = document.querySelector('#current-weather');
   var $currentForecast = document.querySelector('#forecast-preview');
   if (target) {
-    $currentForecast.className = 'view';
-    $currentWeather.className = 'hidden';
+    $currentForecast.className = 'hidden';
+    $currentWeather.className = 'view';
   }
 });
