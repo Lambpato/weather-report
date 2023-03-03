@@ -34,8 +34,6 @@ async function grabForecast(location) {
 }
 
 function renderWeather(location) {
-  // var entryId = 0;
-
   var times = location.forecast.forecastday[0].hour;
   var $userEntries = document.createElement('li');
   $userEntries.setAttribute('data-entry-id', location.entryId);
@@ -67,6 +65,7 @@ function renderWeather(location) {
   var $currentIcon = document.createElement('img');
   $currentIcon.className = 'current-icon';
   $currentIcon.setAttribute('src', location.current.condition.icon);
+  $currentIcon.setAttribute('alt', location.current.condition.text);
   $conditions.appendChild($currentIcon);
   $columnOneThird.appendChild($conditions);
   var $columnTwoThirds = document.createElement('div');
@@ -75,15 +74,19 @@ function renderWeather(location) {
   $ul.className = 'hourly-forecast';
   $columnTwoThirds.appendChild($ul);
   $currentWeather.appendChild($columnTwoThirds);
-  var $currentForecast = document.createElement('div');
-  $currentForecast.setAttribute('data-entry-id', data.entryId);
-  $currentForecast.setAttribute('id', 'forecast-preview');
+  var $additionalForecast = document.createElement('div');
+  $additionalForecast.setAttribute('data-entry-id', data.entryId);
+  $additionalForecast.setAttribute('id', 'additional-forecast');
   if (window.matchMedia('only screen and (max-width: 768px)').matches) {
-    $currentForecast.className = 'hidden';
+    $additionalForecast.className = 'hidden';
   } else {
-    $currentForecast.className = 'forecast-view';
+    $additionalForecast.className = 'forecast-view';
   }
-  $userEntries.appendChild($currentForecast);
+  var $currentForecast = document.createElement('div');
+  $currentForecast.className = 'current-forecast';
+  $additionalForecast.appendChild($currentForecast);
+
+  $userEntries.appendChild($additionalForecast);
   var $forecastHeader = document.createElement('div');
   $forecastHeader.className = 'forecast-head';
   var $backArrowDiv = document.createElement('div');
@@ -110,6 +113,7 @@ function renderWeather(location) {
   $forecastConditions.appendChild($forecastConditionText);
   var $forecastConditionIcon = document.createElement('img');
   $forecastConditionIcon.setAttribute('src', location.current.condition.icon);
+  $forecastConditionIcon.setAttribute('alt', location.current.condition.text);
   $forecastConditionIcon.className = 'forecast-condition-icon';
   $forecastConditions.appendChild($forecastConditionIcon);
   var $forecastHighLow = document.createElement('div');
@@ -117,22 +121,23 @@ function renderWeather(location) {
   $forecastHeader.appendChild($forecastHighLow);
   var $forecastHigh = document.createElement('p');
   $forecastHigh.className = 'forecast-high';
-  $forecastHigh.textContent = 'H: ' + location.forecast.forecastday[0].day.maxtemp_f + '°';
+  $forecastHigh.textContent = 'H: ' + Math.round(location.forecast.forecastday[0].day.maxtemp_f) + '°';
   $forecastHighLow.appendChild($forecastHigh);
   var $forecastLow = document.createElement('p');
   $forecastLow.className = 'forecast-low';
-  $forecastLow.textContent = 'L: ' + location.forecast.forecastday[0].day.mintemp_f + '°';
+  $forecastLow.textContent = 'L: ' + Math.round(location.forecast.forecastday[0].day.mintemp_f) + '°';
   $forecastHighLow.appendChild($forecastLow);
-  var $additionalForecast = document.createElement('div');
-  $additionalForecast.className = 'additional-forecast';
-  $currentForecast.appendChild($additionalForecast);
+  var $forecastPreview = document.createElement('div');
+  $forecastPreview.className = 'forecast-preview';
+  $currentForecast.appendChild($forecastPreview);
   var $forecastHourlyDiv = document.createElement('div');
   $forecastHourlyDiv.className = 'hourly-list';
-  $additionalForecast.appendChild($forecastHourlyDiv);
+  $forecastPreview.appendChild($forecastHourlyDiv);
   var $forecastHourly = document.createElement('ul');
   $forecastHourly.className = 'hourly-forecast';
   for (var i = 0; i < times.length; i++) {
     var weatherIcons = location.forecast.forecastday[0].hour[i].condition.icon;
+    var weatherIconAlt = location.forecast.forecastday[0].hour[i].condition.text;
     var tempf = Math.round(location.forecast.forecastday[0].hour[i].temp_f);
     var $li = document.createElement('li');
     $li.className = 'hourly-weather';
@@ -143,6 +148,7 @@ function renderWeather(location) {
     $temp.className = 'hourly-temp';
     $li.appendChild($temp);
     $icon.setAttribute('src', weatherIcons);
+    $icon.setAttribute('alt', weatherIconAlt);
     $icon.className = 'weather-icon';
     $li.appendChild($icon);
     $time.className = 'time';
@@ -155,7 +161,7 @@ function renderWeather(location) {
   $forecastHourlyDiv.appendChild($forecastHourly);
   var $forecastRowOne = document.createElement('div');
   $forecastRowOne.className = 'forecast-row';
-  $additionalForecast.appendChild($forecastRowOne);
+  $forecastPreview.appendChild($forecastRowOne);
   var $forecastConditionColumn = document.createElement('div');
   $forecastConditionColumn.className = 'column-left-condition';
   $forecastRowOne.appendChild($forecastConditionColumn);
@@ -165,6 +171,7 @@ function renderWeather(location) {
   $forecastConditionColumn.appendChild($conditionText);
   var $conditionIcon = document.createElement('img');
   $conditionIcon.setAttribute('src', location.current.condition.icon);
+  $conditionIcon.setAttribute('alt', location.current.condition.text);
   $conditionIcon.className = 'condition-icon';
   $forecastConditionColumn.appendChild($conditionIcon);
   var $conditionDescription = document.createElement('p');
@@ -188,7 +195,7 @@ function renderWeather(location) {
   $windConditionColumn.appendChild($windSpeed);
   var $forecastRowTwo = document.createElement('div');
   $forecastRowTwo.className = 'forecast-row';
-  $additionalForecast.appendChild($forecastRowTwo);
+  $forecastPreview.appendChild($forecastRowTwo);
   var $humidityColumn = document.createElement('div');
   $humidityColumn.className = 'column-left';
   $forecastRowTwo.appendChild($humidityColumn);
@@ -213,7 +220,7 @@ function renderWeather(location) {
   $rainColumn.appendChild($rainPercentage);
   var $astroRow = document.createElement('div');
   $astroRow.className = 'astro-row';
-  $additionalForecast.appendChild($astroRow);
+  $forecastPreview.appendChild($astroRow);
   var $astroText = document.createElement('p');
   $astroText.className = 'forecast-header';
   $astroRow.textContent = 'Astro';
@@ -240,6 +247,45 @@ function renderWeather(location) {
   $moonrise.textContent = 'Moonset: ' + location.forecast.forecastday[0].astro.moonrise;
   $astroRight.appendChild($moonrise);
   $astroRow.appendChild($astroRight);
+  var $weeklyWeatherDiv = document.createElement('div');
+  $weeklyWeatherDiv.className = 'weekly-weather-container';
+  $additionalForecast.appendChild($weeklyWeatherDiv);
+  var $dayOfWeek = document.createElement('ul');
+  $dayOfWeek.className = 'day-of-week';
+  $weeklyWeatherDiv.appendChild($dayOfWeek);
+  var day = location.forecast.forecastday;
+  var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  for (var y = 1; y < day.length; y++) {
+    var time = day[y].date;
+    var weekday = new Date(time);
+    var date = weekday.getDay();
+    var currentday = weekdays[date];
+    var dayIcon = day[y].day.condition.icon;
+    var dayIconAlt = day[y].day.condition.text;
+    var dayTempMax = Math.round(day[y].day.maxtemp_f);
+    var dayTempMin = Math.round(day[y].day.mintemp_f);
+    var $dayli = document.createElement('li');
+    $dayli.className = 'day-weather';
+    var $day = document.createElement('p');
+    var $dayIcon = document.createElement('img');
+    var $dayTempMin = document.createElement('p');
+    var $dayTempMax = document.createElement('p');
+    $day.className = 'date';
+    $day.textContent = currentday;
+    $dayli.appendChild($day);
+    $dayIcon.setAttribute('src', dayIcon);
+    $dayIcon.setAttribute('alt', dayIconAlt);
+    $dayIcon.className = 'day-icon';
+    $dayli.appendChild($dayIcon);
+    $dayli.appendChild($dayTempMin);
+    $dayTempMin.className = 'day-temp-min';
+    $dayTempMin.textContent = dayTempMin + '°';
+    $dayli.appendChild($dayTempMax);
+    $dayTempMax.textContent = dayTempMax + '°';
+    $dayTempMax.className = 'day-temp-max';
+    $dayOfWeek.appendChild($dayli);
+  }
+
   return $userEntries;
 }
 
@@ -268,32 +314,32 @@ document.addEventListener('DOMContentLoaded', appendForecast);
 
 window.addEventListener('resize', function (e) {
   var $currentWeather = document.querySelector('#current-weather');
-  var $currentForecast = document.querySelector('#forecast-preview');
+  var $additionalForecast = document.querySelector('#additional-forecast');
   if (window.matchMedia('only screen and (min-width: 768px)').matches) {
-    $currentForecast.className = 'forecast-view';
+    $additionalForecast.className = 'forecast-view';
     $currentWeather.className = 'view';
   } else {
-    $currentForecast.className = 'hidden';
+    $additionalForecast.className = 'hidden';
     $currentWeather.className = 'view';
   }
 });
 
 document.addEventListener('click', function (e) {
   var $currentWeather = document.querySelector('#current-weather');
-  var $currentForecast = document.querySelector('#forecast-preview');
+  var $additionalForecast = document.querySelector('#additional-forecast');
   if (window.matchMedia('only screen and (min-width: 768px)').matches) {
     return;
   }
-  $currentForecast.className = 'forecast-view';
+  $additionalForecast.className = 'forecast-view';
   $currentWeather.className = 'hidden';
 });
 
 document.addEventListener('click', function (e) {
   var target = e.target.closest('.mobile-back');
   var $currentWeather = document.querySelector('#current-weather');
-  var $currentForecast = document.querySelector('#forecast-preview');
+  var $additionalForecast = document.querySelector('#additional-forecast');
   if (target) {
-    $currentForecast.className = 'hidden';
+    $additionalForecast.className = 'hidden';
     $currentWeather.className = 'view';
   }
 });

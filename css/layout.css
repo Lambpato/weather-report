@@ -42,10 +42,53 @@ body {
 
   .user-entry {
     display: flex;
-    gap: 30rem;
+    gap: 3rem;
   }
 
   .mobile-back {
     display: none;
+  }
+
+  #additional-forecast {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 950px;
+  }
+
+  .forecast-preview {
+    width: 600px;
+  }
+
+  .column-left,
+  .column-left-condition,
+  .column-right {
+    width: 250px;
+    height: 120px;
+    font-size: 1.3rem;
+  }
+
+  .forecast-text {
+    font-size: 1rem;
+  }
+
+  .astro-row {
+    width: 550px;
+    margin: 2rem auto;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .weekly-weather-container {
+    width: 320px;
+    height: 531.91px;
+  }
+
+  .day-of-week {
+    padding: 0;
+  }
+
+  .day-weather {
+    margin: 1.5rem 1rem;
   }
 }
