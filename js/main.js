@@ -65,6 +65,7 @@ function renderWeather(location) {
   var $currentIcon = document.createElement('img');
   $currentIcon.className = 'current-icon';
   $currentIcon.setAttribute('src', location.current.condition.icon);
+  $currentIcon.setAttribute('alt', location.current.condition.text);
   $conditions.appendChild($currentIcon);
   $columnOneThird.appendChild($conditions);
   var $columnTwoThirds = document.createElement('div');
@@ -112,6 +113,7 @@ function renderWeather(location) {
   $forecastConditions.appendChild($forecastConditionText);
   var $forecastConditionIcon = document.createElement('img');
   $forecastConditionIcon.setAttribute('src', location.current.condition.icon);
+  $forecastConditionIcon.setAttribute('alt', location.current.condition.text);
   $forecastConditionIcon.className = 'forecast-condition-icon';
   $forecastConditions.appendChild($forecastConditionIcon);
   var $forecastHighLow = document.createElement('div');
@@ -135,6 +137,7 @@ function renderWeather(location) {
   $forecastHourly.className = 'hourly-forecast';
   for (var i = 0; i < times.length; i++) {
     var weatherIcons = location.forecast.forecastday[0].hour[i].condition.icon;
+    var weatherIconAlt = location.forecast.forecastday[0].hour[i].condition.text;
     var tempf = Math.round(location.forecast.forecastday[0].hour[i].temp_f);
     var $li = document.createElement('li');
     $li.className = 'hourly-weather';
@@ -145,6 +148,7 @@ function renderWeather(location) {
     $temp.className = 'hourly-temp';
     $li.appendChild($temp);
     $icon.setAttribute('src', weatherIcons);
+    $icon.setAttribute('alt', weatherIconAlt);
     $icon.className = 'weather-icon';
     $li.appendChild($icon);
     $time.className = 'time';
@@ -167,6 +171,7 @@ function renderWeather(location) {
   $forecastConditionColumn.appendChild($conditionText);
   var $conditionIcon = document.createElement('img');
   $conditionIcon.setAttribute('src', location.current.condition.icon);
+  $conditionIcon.setAttribute('alt', location.current.condition.text);
   $conditionIcon.className = 'condition-icon';
   $forecastConditionColumn.appendChild($conditionIcon);
   var $conditionDescription = document.createElement('p');
@@ -256,6 +261,7 @@ function renderWeather(location) {
     var date = weekday.getDay();
     var currentday = weekdays[date];
     var dayIcon = day[y].day.condition.icon;
+    var dayIconAlt = day[y].day.condition.text;
     var dayTempMax = Math.round(day[y].day.maxtemp_f);
     var dayTempMin = Math.round(day[y].day.mintemp_f);
     var $dayli = document.createElement('li');
@@ -268,6 +274,7 @@ function renderWeather(location) {
     $day.textContent = currentday;
     $dayli.appendChild($day);
     $dayIcon.setAttribute('src', dayIcon);
+    $dayIcon.setAttribute('alt', dayIconAlt);
     $dayIcon.className = 'day-icon';
     $dayli.appendChild($dayIcon);
     $dayli.appendChild($dayTempMin);
