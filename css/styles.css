@@ -18,6 +18,7 @@
   margin: 0;
   color: white;
   text-shadow: 1px 1px 2px black;
+  font-size: 0.75rem;
 }
 
 .cloud-one {
@@ -126,10 +127,6 @@ li {
   padding-left: 0;
 }
 
-.time {
-  font-size: 0.75rem;
-}
-
 .weather-icon {
   max-width: 2.75rem;
 }
@@ -152,8 +149,8 @@ li {
 }
 
 .current-icon {
-  max-width: 2rem;
-  max-height: 2rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
 }
 
 .column-two-thirds,
@@ -163,10 +160,6 @@ li {
 
 .current-location {
   font-size: 1rem;
-}
-
-.current-time {
-  font-size: 0.7rem;
 }
 
 .current-location,
