@@ -28,6 +28,7 @@ async function grabForecast(location) {
       } else {
         reject(new Error('something bad happened'));
       }
+      // console.log(xhr.response);
     };
     xhr.send();
   });
@@ -285,7 +286,36 @@ function renderWeather(location) {
     $dayTempMax.className = 'day-temp-max';
     $dayOfWeek.appendChild($dayli);
   }
-
+  var $weatherAlertDiv = document.createElement('div');
+  if (location.alerts.alert.length === 0) {
+    $weatherAlertDiv.className = 'hidden';
+  } else {
+    $weatherAlertDiv.className = 'weather-alert-div';
+  }
+  $additionalForecast.appendChild($weatherAlertDiv);
+  var $weatherAlert = document.createElement('div');
+  $weatherAlert.className = 'weather-alert';
+  $weatherAlertDiv.appendChild($weatherAlert);
+  var $alert = document.createElement('p');
+  $alert.className = 'alert';
+  $alert.textContent = 'ALERT';
+  $weatherAlert.appendChild($alert);
+  for (var l = 0; l < location.alerts.alert.length; l++) {
+    if (location.alerts.alert[l].msgtype === 'Alert') {
+      var $severity = document.createElement('p');
+      $weatherAlert.appendChild($severity);
+      $severity.className = location.alerts.alert[l].severity;
+      $severity.textContent = 'Severity: ' + location.alerts.alert[l].severity;
+      var $alertHeadline = document.createElement('p');
+      $alertHeadline.className = 'alert-headline';
+      $alertHeadline.textContent = location.alerts.alert[l].headline;
+      $weatherAlert.appendChild($alertHeadline);
+      var $alertInstructions = document.createElement('p');
+      $alertInstructions.className = 'alert-text';
+      $alertInstructions.textContent = location.alerts.alert[l].instruction;
+      $weatherAlert.appendChild($alertInstructions);
+    }
+  }
   return $userEntries;
 }
 

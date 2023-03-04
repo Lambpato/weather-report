@@ -206,7 +206,8 @@ li {
 }
 
 .forecast-preview,
-.weekly-weather-container {
+.weekly-weather-container,
+.weather-alert-div {
   background-color: rgb(48, 116, 186);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
   border-radius: 0.5rem;
@@ -257,7 +258,8 @@ li {
 .column-left,
 .column-right,
 .column-left-condition,
-.astro-row {
+.astro-row,
+.weather-alert {
   background-color: rgb(74, 135, 196);
   box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.25);
   border-radius: 0.5rem;
@@ -338,4 +340,9 @@ li {
   .day-weather {
     margin: 1rem;
   }
+}
+
+.weather-alert {
+  margin: 1rem;
+  overflow: scroll;
 }
