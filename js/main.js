@@ -28,7 +28,6 @@ async function grabForecast(location) {
       } else {
         reject(new Error('something bad happened'));
       }
-      // console.log(xhr.response);
     };
     xhr.send();
   });
@@ -83,10 +82,12 @@ function renderWeather(location) {
   } else {
     $additionalForecast.className = 'forecast-view';
   }
+  var $additionalForecastRow = document.createElement('div');
+  $additionalForecastRow.className = 'additional-forecast-row';
+  $additionalForecast.appendChild($additionalForecastRow);
   var $currentForecast = document.createElement('div');
   $currentForecast.className = 'current-forecast';
-  $additionalForecast.appendChild($currentForecast);
-
+  $additionalForecastRow.appendChild($currentForecast);
   $userEntries.appendChild($additionalForecast);
   var $forecastHeader = document.createElement('div');
   $forecastHeader.className = 'forecast-head';
@@ -250,7 +251,7 @@ function renderWeather(location) {
   $astroRow.appendChild($astroRight);
   var $weeklyWeatherDiv = document.createElement('div');
   $weeklyWeatherDiv.className = 'weekly-weather-container';
-  $additionalForecast.appendChild($weeklyWeatherDiv);
+  $additionalForecastRow.appendChild($weeklyWeatherDiv);
   var $dayOfWeek = document.createElement('ul');
   $dayOfWeek.className = 'day-of-week';
   $weeklyWeatherDiv.appendChild($dayOfWeek);
@@ -302,17 +303,20 @@ function renderWeather(location) {
   $weatherAlert.appendChild($alert);
   for (var l = 0; l < location.alerts.alert.length; l++) {
     if (location.alerts.alert[l].msgtype === 'Alert') {
+      var $alerts = document.createElement('div');
+      $alerts.className = 'alerts';
+      $weatherAlert.appendChild($alerts);
       var $severity = document.createElement('p');
       $weatherAlert.appendChild($severity);
-      $severity.className = location.alerts.alert[l].severity;
+      $severity.className = location.alerts.alert[l].severity.toLowerCase();
       $severity.textContent = 'Severity: ' + location.alerts.alert[l].severity;
       var $alertHeadline = document.createElement('p');
       $alertHeadline.className = 'alert-headline';
-      $alertHeadline.textContent = location.alerts.alert[l].headline;
+      $alertHeadline.textContent = 'Headline: ' + location.alerts.alert[l].headline;
       $weatherAlert.appendChild($alertHeadline);
       var $alertInstructions = document.createElement('p');
       $alertInstructions.className = 'alert-text';
-      $alertInstructions.textContent = location.alerts.alert[l].instruction;
+      $alertInstructions.textContent = 'Intructions: ' + location.alerts.alert[l].instruction;
       $weatherAlert.appendChild($alertInstructions);
     }
   }

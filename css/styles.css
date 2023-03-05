@@ -316,6 +316,7 @@ li {
   .forecast-preview,
   .forecast-header {
     max-width: 320px;
+    padding: auto;
   }
 
   .column-left,
@@ -345,4 +346,25 @@ li {
 .weather-alert {
   margin: 1rem;
   overflow: scroll;
+  font-weight: 500;
+}
+
+.alert {
+  text-align: center;
+  color: red;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px black;
+  font-size: 1.25rem;
+}
+
+.minor {
+  color: rgb(253, 140, 0);
+}
+
+.major {
+  color: rgb(220, 0, 0);
+}
+
+.severe {
+  color: rgb(120, 0, 0);
 }
