@@ -346,6 +346,7 @@ function viewSwap(view) {
 }
 
 $form.addEventListener('submit', submitForm);
+
 document.addEventListener('DOMContentLoaded', appendForecast);
 
 window.addEventListener('resize', function (e) {
