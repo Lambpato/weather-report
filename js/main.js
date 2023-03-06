@@ -19,8 +19,9 @@ async function submitForm(e) {
 
 async function grabForecast(location) {
   return new Promise(function (resolve, reject) {
+    var targetUrl = encodeURIComponent('http://api.weatherapi.com/v1/forecast.json?key=bb2468a183ea4225855173630232702&q=' + location + '&days=8&aqi=yes&alerts=yes');
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + encodeURIComponent('http://api.weatherapi.com/v1/forecast.json?key=bb2468a183ea4225855173630232702&q=' + location + '&days=8&aqi=yes&alerts=yes'));
+    xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
     xhr.setRequestHeader('token', 'abc123');
     xhr.responseType = 'json';
     xhr.onload = function () {
