@@ -368,3 +368,14 @@ li {
 .severe {
   color: rgb(120, 0, 0);
 }
+
+i {
+  font-size: 4rem;
+  color: lightgrey;
+}
+
+#weather-preview {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

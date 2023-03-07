@@ -34,17 +34,18 @@
       </div>
     </div>
   </header>
+  <main class="container">
+    <div id="weather-preview" data-view="entries">
+      <ul id="user-entry-list">
+      </ul>
+      <i class="fa-solid fa-plus"></i>
+    </div>
+  </main>
   <form data-view="entry-form">
     <input type="text" id="location" placeholder="City or Zip Code" required>
     <label for="enter"></label>
     <button class="enter-button" type="submit" id="enter">Enter</button>
   </form>
-  <main class="container">
-    <div id="weather-preview" data-view="entries">
-      <ul id="user-entry-list">
-      </ul>
-    </div>
-  </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
