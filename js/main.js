@@ -419,6 +419,6 @@ $weather.addEventListener('click', function (e) {
 });
 
 $newEntry.addEventListener('click', newEntry);
-// $cancel.addEventListener('click', function (e) {
-//   viewSwap('entries');
-// });
+$cancel.addEventListener('click', function (e) {
+  viewSwap('entries');
+});
