@@ -2,6 +2,8 @@ var $locationinput = document.querySelector('#location');
 var $form = document.querySelector('form');
 var $weather = document.querySelector('#user-entry-list');
 var $header = document.querySelector('.header-column');
+var $newEntry = document.querySelector('#new-location');
+var $cancel = document.querySelector('#cancel');
 
 async function submitForm(e) {
   e.preventDefault();
@@ -10,11 +12,22 @@ async function submitForm(e) {
     entryId: data.nextEntryId
   };
   var forecastResult = await grabForecast(inputs.location);
-  $weather.appendChild(renderWeather(forecastResult));
+
+  for (var i = 0; i < data.entries.length; i++) {
+    var forecastStored = await grabForecast(data.entries[i].location);
+
+    if (forecastResult.location.name !== forecastStored.location.name || data.entries === []) {
+      $weather.prepend(renderWeather(forecastResult));
+    } else {
+      return;
+    }
+  }
   data.nextEntryId++;
   data.entries.unshift(inputs);
   viewSwap('entries');
+  $newEntry.className = 'view';
   $form.reset();
+
 }
 
 async function grabForecast(location) {
@@ -35,13 +48,13 @@ async function grabForecast(location) {
   });
 }
 
-function renderWeather(location) {
+function renderWeather(location, entryId) {
   var times = location.forecast.forecastday[0].hour;
   var $userEntries = document.createElement('li');
-  $userEntries.setAttribute('data-entry-id', location.entryId);
+  $userEntries.setAttribute('data-entry-id', entryId);
   $userEntries.className = 'user-entry';
   var $currentWeather = document.createElement('div');
-  $currentWeather.setAttribute('id', 'current-weather');
+  $currentWeather.className = 'current-weather';
   $userEntries.appendChild($currentWeather);
   var $columnOneThird = document.createElement('div');
   $columnOneThird.className = 'column-one-third';
@@ -77,12 +90,12 @@ function renderWeather(location) {
   $columnTwoThirds.appendChild($ul);
   $currentWeather.appendChild($columnTwoThirds);
   var $additionalForecast = document.createElement('div');
-  $additionalForecast.setAttribute('data-entry-id', data.entryId);
-  $additionalForecast.setAttribute('id', 'additional-forecast');
+  $additionalForecast.setAttribute('data-entry-id', entryId);
+  $additionalForecast.className = 'additional-forecast';
   if (window.matchMedia('only screen and (max-width: 768px)').matches) {
-    $additionalForecast.className = 'hidden';
+    $additionalForecast.className = 'additional-forecast hidden';
   } else {
-    $additionalForecast.className = 'forecast-view';
+    $additionalForecast.className = 'additional-forecast';
   }
   var $additionalForecastRow = document.createElement('div');
   $additionalForecastRow.className = 'additional-forecast-row';
@@ -328,7 +341,7 @@ function renderWeather(location) {
 async function appendForecast() {
   for (var i = 0; i < data.entries.length; i++) {
     var forecastResult = await grabForecast(data.entries[i].location);
-    $weather.appendChild(renderWeather(forecastResult));
+    $weather.appendChild(renderWeather(forecastResult, data.entries[i].entryId));
   }
   viewSwap(data.view);
 }
@@ -338,45 +351,73 @@ function viewSwap(view) {
     data.view = 'entries';
     $form.className = 'hidden';
     $header.className = 'hidden';
+    $newEntry.className = 'entries';
   } else if (view === 'entry-form') {
     data.view = 'entry-form';
     $form.className = 'view';
     $header.className = 'header-column';
+    $newEntry.className = 'hidden';
+  } else if (view === 'new-entry') {
+    data.view = 'new-entry';
+    $form.className = 'entry-form';
+    $cancel.className = 'view';
+    $newEntry.className = 'hidden';
   }
 }
 
-$form.addEventListener('submit', submitForm);
+function newEntry(e) {
+  viewSwap('new-entry');
+}
 
+$form.addEventListener('submit', submitForm);
 document.addEventListener('DOMContentLoaded', appendForecast);
 
 window.addEventListener('resize', function (e) {
-  var $currentWeather = document.querySelector('#current-weather');
-  var $additionalForecast = document.querySelector('#additional-forecast');
-  if (window.matchMedia('only screen and (min-width: 768px)').matches) {
-    $additionalForecast.className = 'forecast-view';
-    $currentWeather.className = 'view';
-  } else {
-    $additionalForecast.className = 'hidden';
-    $currentWeather.className = 'view';
+  var $currentWeather = document.querySelectorAll('.current-weather');
+  var $additionalForecast = document.querySelectorAll('.additional-forecast');
+  for (var i = 0; i < $currentWeather.length; i++) {
+    if (window.matchMedia('only screen and (min-width: 768px)').matches) {
+      $additionalForecast[i].className = 'additional-forecast';
+      $currentWeather[i].className = 'current-weather';
+    } else {
+      $additionalForecast[i].className = 'additional-forecast hidden';
+      $currentWeather[i].className = 'current-weather';
+    }
   }
 });
 
-document.addEventListener('click', function (e) {
-  var $currentWeather = document.querySelector('#current-weather');
-  var $additionalForecast = document.querySelector('#additional-forecast');
+$weather.addEventListener('click', function (e) {
+  var $currentWeather = document.querySelectorAll('.current-weather');
   if (window.matchMedia('only screen and (min-width: 768px)').matches) {
     return;
   }
-  $additionalForecast.className = 'forecast-view';
-  $currentWeather.className = 'hidden';
+  if (e.target && e.target.matches('div')) {
+    e.target.closest('current-weather');
+    var target = e.target.nextSibling;
+    target.className = 'additional-forecast';
+    for (var i = 0; i < $currentWeather.length; i++) {
+      $currentWeather[i].className = 'current-weather hidden';
+    }
+    $newEntry.className = 'hidden';
+    $form.className = 'hidden';
+  }
 });
 
-document.addEventListener('click', function (e) {
+$weather.addEventListener('click', function (e) {
   var target = e.target.closest('.mobile-back');
-  var $currentWeather = document.querySelector('#current-weather');
-  var $additionalForecast = document.querySelector('#additional-forecast');
+  var $currentWeather = document.querySelectorAll('.current-weather');
+  var $additionalForecast = document.querySelectorAll('.additional-forecast');
   if (target) {
-    $additionalForecast.className = 'hidden';
-    $currentWeather.className = 'view';
+    for (var i = 0; i < $currentWeather.length; i++) {
+      $currentWeather[i].className = 'current-weather';
+      $additionalForecast.className = 'additional-forecast hidden';
+    }
+
+    $newEntry.className = 'view';
   }
+});
+
+$newEntry.addEventListener('click', newEntry);
+$cancel.addEventListener('click', function (e) {
+  viewSwap('entries');
 });

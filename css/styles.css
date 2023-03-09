@@ -95,7 +95,7 @@ li {
   list-style-type: none;
 }
 
-#current-weather {
+.current-weather {
   display: flex;
   align-items: center;
   max-width: 320px;
@@ -367,4 +367,27 @@ li {
 
 .severe {
   color: rgb(120, 0, 0);
+}
+
+#new-location {
+  font-size: 3rem;
+  margin: 2rem;
+  color: rgb(182, 182, 182);
+  max-width: 100%;
+  text-align: center;
+}
+
+.buttons {
+  width: 320px;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#cancel {
+  color: rgb(128, 0, 32);
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
 }
