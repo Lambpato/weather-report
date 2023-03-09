@@ -11,12 +11,22 @@ async function submitForm(e) {
     entryId: data.nextEntryId
   };
   var forecastResult = await grabForecast(inputs.location);
-  $weather.appendChild(renderWeather(forecastResult));
+
+  for (var i = 0; i < data.entries.length; i++) {
+    var forecastStored = await grabForecast(data.entries[i].location);
+
+    if (forecastResult.location.name !== forecastStored.location.name || data.entries === []) {
+      $weather.appendChild(renderWeather(forecastResult));
+    } else {
+      return;
+    }
+  }
   data.nextEntryId++;
-  data.entries.unshift(inputs);
+  data.entries.push(inputs);
   viewSwap('entries');
   $newEntry.className = 'view';
   $form.reset();
+
 }
 
 async function grabForecast(location) {
@@ -346,7 +356,7 @@ function viewSwap(view) {
     data.view = 'entry-form';
     $form.className = 'view';
     $header.className = 'header-column';
-    $newEntry.className = 'e';
+    $newEntry.className = 'hidden';
   }
 }
 
@@ -396,7 +406,7 @@ $weather.addEventListener('click', function (e) {
   if (target) {
     for (var i = 0; i < $currentWeather.length; i++) {
       $currentWeather[i].className = 'current-weather';
-      $additionalForecast[i].className = 'additional-forecast hidden';
+      $additionalForecast.className = 'additional-forecast hidden';
     }
 
     $newEntry.className = 'view';
