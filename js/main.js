@@ -365,6 +365,7 @@ function viewSwap(view) {
     $form.className = 'view';
     $header.className = 'header-column';
     $newEntry.className = 'hidden';
+    $cancel.className = 'hidden';
   } else if (view === 'new-entry') {
     data.view = 'new-entry';
     $header.className = 'hidden';
@@ -440,12 +441,19 @@ $cancel.addEventListener('click', function (e) {
   }
 });
 
-// $weather.addEventListener('click', function (e) {
-//   var $entryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
-//   if (e.target && e.target.matches('i')) {
-//     e.target.closest('.delete');
-//     for (var i = 0; i < data.entries.length; i++) {
-
-//     }
-//   }
-// });
+$weather.addEventListener('click', function (e) {
+  var $li = document.querySelectorAll('.user-entry');
+  var $entryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
+  if (e.target && e.target.matches('i')) {
+    e.target.closest('.delete');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === $entryId) {
+        data.entries.splice(i, 1);
+        $weather.removeChild($li[i]);
+      }
+    }
+    if (data.entries.length === 0) {
+      viewSwap('entry-form');
+    }
+  }
+});
