@@ -43,7 +43,6 @@ async function grabForecast(location) {
       } else {
         reject(new Error('something bad happened'));
       }
-      // console.log(xhr.response);
     };
     xhr.send();
   });
