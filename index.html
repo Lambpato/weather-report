@@ -44,9 +44,10 @@
   </main>
   <form data-view="entry-form">
     <input type="text" id="location" placeholder="City or Zip Code" required>
-    <label for="enter"></label>
-    <button class="enter-button" type="submit" id="enter">Enter</button>
-    <!-- <label for="cancel" -->
+    <div class="buttons">
+      <button class="enter-button" type="submit" id="enter">Enter</button>
+      <button class="hidden" type="button" id="cancel">Cancel</button>
+    </div>
   </form>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

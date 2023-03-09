@@ -3,6 +3,7 @@ var $form = document.querySelector('form');
 var $weather = document.querySelector('#user-entry-list');
 var $header = document.querySelector('.header-column');
 var $newEntry = document.querySelector('#new-location');
+var $cancel = document.querySelector('#cancel');
 
 async function submitForm(e) {
   e.preventDefault();
@@ -357,12 +358,16 @@ function viewSwap(view) {
     $form.className = 'view';
     $header.className = 'header-column';
     $newEntry.className = 'hidden';
+  } else if (view === 'new-entry') {
+    data.view = 'new-entry';
+    $form.className = 'entry-form';
+    $cancel.className = 'view';
+    $newEntry.className = 'hidden';
   }
 }
 
 function newEntry(e) {
-  $newEntry.className = 'hidden';
-  $form.className = 'entry-form';
+  viewSwap('new-entry');
 }
 
 $form.addEventListener('submit', submitForm);
@@ -414,3 +419,6 @@ $weather.addEventListener('click', function (e) {
 });
 
 $newEntry.addEventListener('click', newEntry);
+// $cancel.addEventListener('click', function (e) {
+//   viewSwap('entries');
+// });
