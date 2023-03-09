@@ -46,7 +46,6 @@ async function grabForecast(location) {
       } else {
         reject(new Error('something bad happened'));
       }
-      // console.log(xhr.response);
     };
     xhr.send();
   });
@@ -449,10 +448,12 @@ $weather.addEventListener('click', function (e) {
       if (data.entries[i].entryId === $entryId) {
         data.entries.splice(i, 1);
         $weather.removeChild($li[i]);
+        viewSwap('entries');
       }
     }
     if (data.entries.length === 0) {
       viewSwap('entry-form');
     }
+
   }
 });
