@@ -16,9 +16,7 @@ async function submitForm(e) {
   for (var i = 0; i < data.entries.length; i++) {
     var forecastStored = await grabForecast(data.entries[i].location);
 
-    if (forecastResult.location.name !== forecastStored.location.name || data.entries.length === 0) {
-      $weather.prepend(renderWeather(forecastResult));
-    } else {
+    if (forecastResult.location.name === forecastStored.location.name) {
       return;
     }
   }
@@ -26,8 +24,9 @@ async function submitForm(e) {
   for (var y = 0; y < $delete.length; y++) {
     $delete[y].className = 'delete hidden';
   }
-  data.nextEntryId++;
   data.entries.unshift(inputs);
+  data.nextEntryId++;
+  $weather.prepend(renderWeather(forecastResult));
   viewSwap('entries');
   $newEntry.className = 'view';
   $form.reset();
