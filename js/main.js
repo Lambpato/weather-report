@@ -17,13 +17,13 @@ async function submitForm(e) {
     var forecastStored = await grabForecast(data.entries[i].location);
 
     if (forecastResult.location.name !== forecastStored.location.name || data.entries === []) {
-      $weather.appendChild(renderWeather(forecastResult));
+      $weather.prepend(renderWeather(forecastResult));
     } else {
       return;
     }
   }
   data.nextEntryId++;
-  data.entries.push(inputs);
+  data.entries.unshift(inputs);
   viewSwap('entries');
   $newEntry.className = 'view';
   $form.reset();
