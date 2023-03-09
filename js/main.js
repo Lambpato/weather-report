@@ -376,10 +376,10 @@ function viewSwap(view) {
 }
 
 function newEntry(e) {
-  // var $delete = document.querySelectorAll('.delete');
-  // for (var i = 0; i < $delete.length; i++) {
-  //   $delete[i].className = 'delete fa-solid fa-trash';
-  // }
+  var $delete = document.querySelectorAll('.delete');
+  for (var i = 0; i < $delete.length; i++) {
+    $delete[i].className = 'delete fa-solid fa-trash';
+  }
   viewSwap('new-entry');
 }
 
