@@ -16,14 +16,17 @@ async function submitForm(e) {
   for (var i = 0; i < data.entries.length; i++) {
     var forecastStored = await grabForecast(data.entries[i].location);
 
-    if (forecastResult.location.name !== forecastStored.location.name || data.entries === []) {
-      $weather.prepend(renderWeather(forecastResult));
-    } else {
+    if (forecastResult.location.name === forecastStored.location.name) {
       return;
     }
   }
-  data.nextEntryId++;
+  var $delete = document.querySelectorAll('.delete');
+  for (var y = 0; y < $delete.length; y++) {
+    $delete[y].className = 'delete hidden';
+  }
   data.entries.unshift(inputs);
+  data.nextEntryId++;
+  $weather.prepend(renderWeather(forecastResult));
   viewSwap('entries');
   $newEntry.className = 'view';
   $form.reset();
@@ -56,6 +59,9 @@ function renderWeather(location, entryId) {
   var $currentWeather = document.createElement('div');
   $currentWeather.className = 'current-weather';
   $userEntries.appendChild($currentWeather);
+  var $deleteButton = document.createElement('i');
+  $deleteButton.className = 'delete hidden';
+  $currentWeather.appendChild($deleteButton);
   var $columnOneThird = document.createElement('div');
   $columnOneThird.className = 'column-one-third';
   $currentWeather.appendChild($columnOneThird);
@@ -357,15 +363,22 @@ function viewSwap(view) {
     $form.className = 'view';
     $header.className = 'header-column';
     $newEntry.className = 'hidden';
+    $cancel.className = 'hidden';
   } else if (view === 'new-entry') {
     data.view = 'new-entry';
+    $header.className = 'hidden';
     $form.className = 'entry-form';
     $cancel.className = 'view';
     $newEntry.className = 'hidden';
+
   }
 }
 
 function newEntry(e) {
+  var $delete = document.querySelectorAll('.delete');
+  for (var i = 0; i < $delete.length; i++) {
+    $delete[i].className = 'delete fa-solid fa-trash';
+  }
   viewSwap('new-entry');
 }
 
@@ -410,7 +423,7 @@ $weather.addEventListener('click', function (e) {
   if (target) {
     for (var i = 0; i < $currentWeather.length; i++) {
       $currentWeather[i].className = 'current-weather';
-      $additionalForecast.className = 'additional-forecast hidden';
+      $additionalForecast[i].className = 'additional-forecast hidden';
     }
 
     $newEntry.className = 'view';
@@ -419,5 +432,28 @@ $weather.addEventListener('click', function (e) {
 
 $newEntry.addEventListener('click', newEntry);
 $cancel.addEventListener('click', function (e) {
-  viewSwap('entries');
+  var $delete = document.querySelectorAll('.delete');
+  for (var i = 0; i < $delete.length; i++) {
+    $delete[i].className = 'delete hidden';
+    viewSwap('entries');
+  }
+});
+
+$weather.addEventListener('click', function (e) {
+  var $li = document.querySelectorAll('.user-entry');
+  var $entryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
+  if (e.target && e.target.matches('i')) {
+    e.target.closest('.delete');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === $entryId) {
+        data.entries.splice(i, 1);
+        $weather.removeChild($li[i]);
+        viewSwap('entries');
+      }
+    }
+    if (data.entries.length === 0) {
+      viewSwap('entry-form');
+    }
+
+  }
 });

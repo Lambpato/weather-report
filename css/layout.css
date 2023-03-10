@@ -25,6 +25,10 @@ body {
   width: 100%;
 }
 
+.user-entry {
+  position: relative;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 100%;
@@ -94,5 +98,13 @@ body {
 
   .day-weather {
     margin: 1.5rem 1rem;
+  }
+
+  .fa-trash {
+    font-size: 1.5rem;
+    color: rgb(128, 0, 32);
+    position: absolute;
+    top: -0.5rem;
+    left: 19.25rem;
   }
 }
