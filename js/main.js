@@ -15,14 +15,9 @@ async function submitForm(e) {
 
   for (var i = 0; i < data.entries.length; i++) {
     var forecastStored = await grabForecast(data.entries[i].location);
-
     if (forecastResult.location.name === forecastStored.location.name) {
       return;
     }
-  }
-  var $delete = document.querySelectorAll('.delete');
-  for (var y = 0; y < $delete.length; y++) {
-    $delete[y].className = 'delete hidden';
   }
   data.entries.unshift(inputs);
   data.nextEntryId++;
@@ -30,7 +25,6 @@ async function submitForm(e) {
   viewSwap('entries');
   $newEntry.className = 'view';
   $form.reset();
-
 }
 
 async function grabForecast(location) {
@@ -46,6 +40,7 @@ async function grabForecast(location) {
       } else {
         reject(new Error('something bad happened'));
       }
+      // console.log(xhr.response);
     };
     xhr.send();
   });
@@ -60,7 +55,7 @@ function renderWeather(location, entryId) {
   $currentWeather.className = 'current-weather';
   $userEntries.appendChild($currentWeather);
   var $deleteButton = document.createElement('i');
-  $deleteButton.className = 'delete hidden';
+  $deleteButton.className = 'delete fa-solid fa-trash hidden';
   $currentWeather.appendChild($deleteButton);
   var $columnOneThird = document.createElement('div');
   $columnOneThird.className = 'column-one-third';
@@ -358,6 +353,7 @@ function viewSwap(view) {
     $form.className = 'hidden';
     $header.className = 'hidden';
     $newEntry.className = 'entries';
+    document.querySelectorAll('.delete').forEach(e => e.classList.add('hidden'));
   } else if (view === 'entry-form') {
     data.view = 'entry-form';
     $form.className = 'view';
@@ -370,16 +366,8 @@ function viewSwap(view) {
     $form.className = 'entry-form';
     $cancel.className = 'view';
     $newEntry.className = 'hidden';
-
+    document.querySelectorAll('.delete').forEach(e => e.classList.remove('hidden'));
   }
-}
-
-function newEntry(e) {
-  var $delete = document.querySelectorAll('.delete');
-  for (var i = 0; i < $delete.length; i++) {
-    $delete[i].className = 'delete fa-solid fa-trash';
-  }
-  viewSwap('new-entry');
 }
 
 $form.addEventListener('submit', submitForm);
@@ -430,13 +418,11 @@ $weather.addEventListener('click', function (e) {
   }
 });
 
-$newEntry.addEventListener('click', newEntry);
+$newEntry.addEventListener('click', function (e) {
+  viewSwap('new-entry');
+});
 $cancel.addEventListener('click', function (e) {
-  var $delete = document.querySelectorAll('.delete');
-  for (var i = 0; i < $delete.length; i++) {
-    $delete[i].className = 'delete hidden';
-    viewSwap('entries');
-  }
+  viewSwap('entries');
 });
 
 $weather.addEventListener('click', function (e) {
@@ -454,6 +440,5 @@ $weather.addEventListener('click', function (e) {
     if (data.entries.length === 0) {
       viewSwap('entry-form');
     }
-
   }
 });
