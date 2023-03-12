@@ -392,15 +392,13 @@ $weather.addEventListener('click', function (e) {
   if (window.matchMedia('only screen and (min-width: 768px)').matches) {
     return;
   }
-  if (e.target && e.target.matches('div')) {
-    e.target.closest('current-weather');
+  if (e.target && e.target.matches('.current-weather')) {
     var target = e.target.nextSibling;
     target.className = 'additional-forecast';
     for (var i = 0; i < $currentWeather.length; i++) {
       $currentWeather[i].className = 'current-weather hidden';
     }
     $newEntry.className = 'hidden';
-    $form.className = 'hidden';
   }
 });
 
