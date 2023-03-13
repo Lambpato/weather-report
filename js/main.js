@@ -399,6 +399,8 @@ $weather.addEventListener('click', function (e) {
       $currentWeather[i].className = 'current-weather hidden';
     }
     $newEntry.className = 'hidden';
+    $form.className = 'hidden';
+    document.querySelectorAll('.delete').forEach(e => e.classList.add('hidden'));
   }
 });
 
@@ -426,8 +428,7 @@ $cancel.addEventListener('click', function (e) {
 $weather.addEventListener('click', function (e) {
   var $li = document.querySelectorAll('.user-entry');
   var $entryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
-  if (e.target && e.target.matches('i')) {
-    e.target.closest('.delete');
+  if (e.target && e.target.matches('.delete')) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === $entryId) {
         data.entries.splice(i, 1);
