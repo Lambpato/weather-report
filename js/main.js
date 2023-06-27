@@ -40,7 +40,7 @@ const grabForecast = async location => {
       if (xhr.status >= 200 && xhr.status < 300) {
         resolve(xhr.response);
       } else {
-        reject(new Error(`something bad happened Error Code: ${this.status}`));
+        reject(new Error(`something bad happened Error Code: ${xhr.status}`));
       }
     };
     xhr.send();
