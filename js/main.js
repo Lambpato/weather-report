@@ -437,8 +437,6 @@ $weather.addEventListener('click', e => {
         viewSwap('entries');
       }
     }
-    if (data.entries.length === 0) {
-      viewSwap('entry-form');
-    }
+    if (data.entries.length === 0) viewSwap('entry-form');
   }
 });
