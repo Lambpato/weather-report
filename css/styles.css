@@ -82,7 +82,8 @@ input::placeholder {
 
 input:hover,
 .enter-button:hover,
-.mobile-back:hover {
+.mobile-back:hover,
+.delete:hover {
   cursor: pointer;
 }
 
