@@ -19,11 +19,9 @@ Weather Forecast is a web application for those who like to look ahead and want 
 ![Kapture 2023-06-28 at 01 44 19](https://github.com/Lambpato/ajax-project/assets/34325124/d9fc39ca-224e-4a32-b594-2269298cb8df)
 
 ## Features
-With Weather Forecast you able to
-1: Add and delete multiple locations 
-2: View hourly forecast
-3: View daily forecast
-4: View the current weather alerts 
-5: View when the sun will rise and set
 
-
+- Add and delete multiple locations
+- View hourly forecast
+- View daily forecast
+- View the current weather alerts
+- View when the sun will rise and set

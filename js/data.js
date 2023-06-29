@@ -1,19 +1,17 @@
 /* exported data */
-var data = {
+let data = {
   view: 'entry-form',
   entries: [],
   nextEntryId: 1
 };
 
-var previousDataJSON = localStorage.getItem('weather-local-storage');
+const previousDataJSON = localStorage.getItem('weather-local-storage');
 
-if (previousDataJSON != null) {
-  data = JSON.parse(previousDataJSON);
-}
+if (previousDataJSON != null) data = JSON.parse(previousDataJSON);
 
-function storeData(e) {
-  var dataJSON = JSON.stringify(data);
+const storeData = e => {
+  const dataJSON = JSON.stringify(data);
   localStorage.setItem('weather-local-storage', dataJSON);
-}
+};
 
-window.addEventListener('beforeunload', storeData);
+window.addEventListener('pagehide', storeData);
