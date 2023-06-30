@@ -414,12 +414,12 @@ $weather.addEventListener('click', e => {
       $currentWeather[i].className = 'current-weather';
       $additionalForecast[i].className = 'additional-forecast hidden';
     }
-
     $newEntry.className = 'view';
   }
 });
 
 $newEntry.addEventListener('click', e => {
+  location.reload();
   viewSwap('new-entry');
 });
 $cancel.addEventListener('click', e => {
@@ -427,9 +427,10 @@ $cancel.addEventListener('click', e => {
 });
 
 $weather.addEventListener('click', e => {
+  const target = e.target.closest('.delete');
   const $li = document.querySelectorAll('.user-entry');
   const $entryId = Number(e.target.closest('li').getAttribute('data-entry-id'));
-  if (e.target && e.target.matches('.delete')) {
+  if (target) {
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === $entryId) {
         data.entries.splice(i, 1);
